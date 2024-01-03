@@ -1,0 +1,20 @@
+db:
+  host: localhost
+  port: 5432
+  name: level0
+  username: service
+  password: q1w2e3
+
+nats:
+  host: localhost
+  port: 4222
+
+stan: 
+  clusterId: Level0
+  clientId: Service
+
+service:
+  queueName: Queue
+
+http:
+  port: 8080

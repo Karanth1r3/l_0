@@ -1,0 +1,33 @@
+version: '3.1'
+
+services :
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - -5432:5432
+    volumes:
+      - db:/var/lib/postgresql/data
+
+  nats-streaming:
+    image: nats-streaming
+    restart: always
+    ports:
+      - 4222:4222
+      - 8222:8222
+      - 6222:6222
+    command:
+      - "--cluster"
+      - "nats://0.0.0.0:6222"
+      - "--cluster_id"
+      - "Level0"
+      - "--http_port"
+      - "8222"
+
+volumes:
+  db:
+    driver: local
