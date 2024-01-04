@@ -1,6 +1,6 @@
 package service_test
 
-// sorry for this one, may be refactored later with tables
+// sorry for this one, may be refactored later with test cases
 
 import (
 	"bytes"
