@@ -63,13 +63,13 @@ func NewService(storage srvStorage, conn stan.Conn, cfg config.Service, htmlPage
 	sub, err := conn.QueueSubscribe(
 		cfg.QueueName,
 		cfg.QueueGroup,
-		s.HandleMessage,
+		s.HandleMessage, // nats queue communicates with service through this method
 		startOpt,
 		stan.DurableName("Service"))
 	if err != nil {
 		return nil, fmt.Errorf("failed to subscribe queue: %w", err)
 	}
-	s.sub = sub
+	s.sub = sub // attach subscription to stan queue to service
 	return s, s.UpdateCache()
 }
 
