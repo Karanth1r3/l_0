@@ -12,7 +12,7 @@ import (
 )
 
 func TestService(t *testing.T) {
-	//t.Skip("For dev purpose only")
+	//	t.Skip("For dev purpose only")
 
 	dbConn, err := utils.ConnectDB(config.DB{
 		Host:     "localhost",
