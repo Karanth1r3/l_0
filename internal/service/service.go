@@ -37,7 +37,7 @@ type (
 )
 
 // Constructor
-func NewStorage(storage srvStorage, conn stam.Conn, cfg config.Service, htmlPage []byte) (*Service, error) {
+func NewService(storage srvStorage, conn stan.Conn, cfg config.Service, htmlPage []byte) (*Service, error) {
 	s := &Service{
 		cache:    cache.NewCache(),
 		storage:  storage,
