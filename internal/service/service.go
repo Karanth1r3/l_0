@@ -73,7 +73,7 @@ func NewService(storage srvStorage, conn stan.Conn, cfg config.Service, htmlPage
 	return s, s.UpdateCache()
 }
 
-// Handle message from queue
+// Handle message from queue - one of the tasks - if something wrong was put in STAN channel - will be processed
 func (s *Service) HandleMessage(msg *stan.Msg) {
 
 	var r model.Record
@@ -90,6 +90,9 @@ func (s *Service) HandleMessage(msg *stan.Msg) {
 	}
 
 	err = s.Write(r.OrderUID, msg.Data)
+	if err != nil {
+		log.Print("failed to write message from queue")
+	}
 
 }
 
@@ -147,7 +150,7 @@ func (s *Service) HandleGet(w http.ResponseWriter, r *http.Request) {
 		_, _ = w.Write([]byte(http.StatusText(http.StatusBadRequest)))
 		return
 	}
-
+	// getting data from cache by id, last task
 	record, err := s.cache.Read(id)
 	if err != nil {
 		if errors.Is(err, model.ErrNotFound) {
