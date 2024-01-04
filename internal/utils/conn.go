@@ -6,6 +6,7 @@ import (
 	"log"
 
 	"github.com/Karanth1r3/l_0/internal/config"
+	_ "github.com/lib/pq"
 	"github.com/nats-io/nats.go"
 	"github.com/nats-io/stan.go"
 )
@@ -14,7 +15,7 @@ import (
 func ConnectDB(cfg config.DB) (*sql.DB, error) {
 	// connect to db with name "postgres"
 	dbConnStr := fmt.Sprintf(
-		"host=%s port=%d dbname=%s user=%s password=%s ssldmode=disable",
+		"host=%s port=%d dbname=%s user=%s password=%s sslmode=disable",
 		cfg.Host, cfg.Port, cfg.Name, cfg.Username, cfg.Password,
 	)
 	db, err := sql.Open("postgres", dbConnStr)

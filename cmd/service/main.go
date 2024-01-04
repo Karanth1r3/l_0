@@ -40,6 +40,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	fmt.Println(cfg.NATS.Host, cfg.NATS.Port)
 	defer natsConn.Close()
 
 	stanConn, err := utils.ConnectStan(natsConn, &cfg.STAN)

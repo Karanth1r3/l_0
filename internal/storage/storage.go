@@ -23,7 +23,7 @@ func NewStorage(db *sql.DB) *Storage {
 // Try to write to db (storage) [k - orderUID, v - orderInfo in []byte (data is static)
 func (s *Storage) Write(orderUID string, data []byte) error {
 	query := fmt.Sprintf(`INSERT INTO %s (order_uid, value)
-	VALUES ($S1, $S2)
+	VALUES ($1, $2)
 	ON CONFLICT (order_uid) DO UPDATE SET
 	value = EXCLUDED.value;`, tableName) // rewrite on collision
 
