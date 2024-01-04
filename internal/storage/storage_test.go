@@ -10,7 +10,7 @@ import (
 )
 
 func TestStorage(t *testing.T) {
-	//t.Skip("FOR DEV PURPOSE ONLY")
+	t.Skip("FOR DEV PURPOSE ONLY")
 
 	dbConn, err := utils.ConnectDB(config.DB{
 		Host:     "localhost",
