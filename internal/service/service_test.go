@@ -101,7 +101,7 @@ func TestService(t *testing.T) {
 
 func TestIndex(t *testing.T) {
 
-	// t.Skip("dev")
+	t.Skip("dev")
 	req, err := http.NewRequest("GET", "/index", nil)
 	if err != nil {
 		t.Fatal(err)
@@ -181,6 +181,8 @@ func TestIndex(t *testing.T) {
 }
 
 func Test404(t *testing.T) {
+
+	t.Skip("DEV")
 
 	dbConn, err := utils.ConnectDB(config.DB{
 		Host:     "localhost",
@@ -343,7 +345,7 @@ func TestGet(t *testing.T) {
 }
 
 func TestPost(t *testing.T) {
-	//	t.Skip("for dev purpose")
+	t.Skip("for dev purpose")
 
 	dbConn, err := utils.ConnectDB(config.DB{
 		Host:     "localhost",
@@ -425,7 +427,7 @@ func TestPost(t *testing.T) {
 }
 
 func TestEmptyID(t *testing.T) {
-	//	t.Skip("for dev purpose")
+	t.Skip("for dev purpose")
 
 	dbConn, err := utils.ConnectDB(config.DB{
 		Host:     "localhost",

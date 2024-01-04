@@ -107,7 +107,7 @@ func (s *Service) Write(orderUID string, data []byte) error {
 		return fmt.Errorf("failed to write to db: %w", err)
 	}
 	s.cache.Write(orderUID, data)
-
+	fmt.Println(orderUID, data)
 	return nil
 }
 

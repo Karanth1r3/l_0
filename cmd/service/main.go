@@ -79,7 +79,7 @@ func main() {
 	cleanupDone := make(chan bool)
 	signal.Notify(signalChan, os.Interrupt) // on interrupt/termination, signal shall be notified
 	go func() {
-		for range signalChan {
+		for range signalChan { // from example, not sure how it behaves exactly
 			log.Printf("\nReceived an interrupt...\n\n")
 			_ = httpServer.Shutdown(context.Background())
 			cleanupDone <- true
