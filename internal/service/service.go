@@ -69,8 +69,8 @@ func NewService(storage srvStorage, conn stan.Conn, cfg config.Service, htmlPage
 	if err != nil {
 		return nil, fmt.Errorf("failed to subscribe queue: %w", err)
 	}
-	s.sub = sub // attach subscription to stan queue to service
-	return s, s.UpdateCache()
+	s.sub = sub               // attach subscription to stan queue to service
+	return s, s.UpdateCache() // fill cache from db on creation
 }
 
 // Handle message from queue - one of the tasks - if something wrong was put in STAN channel - will be processed
@@ -107,7 +107,6 @@ func (s *Service) Write(orderUID string, data []byte) error {
 		return fmt.Errorf("failed to write to db: %w", err)
 	}
 	s.cache.Write(orderUID, data)
-	fmt.Println(orderUID, data)
 	return nil
 }
 
